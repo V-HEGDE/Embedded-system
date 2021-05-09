@@ -17,9 +17,9 @@ void sendchar(unsigned char *c){
   int i;
   rx=0;
   for(i=0;i<4;i++){
-    UDR0=*c;
-    c++;
-    while(!(UCSR0A&(1<<5)));
+  UDR0=*c;
+  c++;
+  while(!(UCSR0A&(1<<5)));
   }
 }
 
