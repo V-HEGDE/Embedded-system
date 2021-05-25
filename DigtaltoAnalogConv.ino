@@ -42,19 +42,21 @@ void set_voltage(char *st)
     if(st[0]=='-')
     {
       send_message(error_message);
+      send_message(prompt);
       count=0;
     }
     else
     {
-      count=0;
       value=atof(st);
      if(value<0 || value>5)
       {
        send_message(error_message);
        send_message(prompt);
+       count=0;
       }
      else
      {
+       count=0;
        OCR0A=255*value/5;
        send_message(ack);
        send_message(prompt);
@@ -70,7 +72,7 @@ void set_pwm()
   pinMode(6,OUTPUT);
   TCCR0A=0X83;
   TCCR0B=0X04;
-  set_voltage(rx);
+  send_message(prompt);
 }
 
 
